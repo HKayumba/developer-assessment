@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="home">
+        <h1 class="h1-contact">Contact List</h1>
+    <div class="view">
+        <div class="container text-center"> 
+            
+            <% if (contacts.length === 0) { %>
+                <p class="text-center text-muted">No contact(s) found.</p>
+            <% } else { %>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Name</th>
+                                <th class="text-left">Surname</th>
+                                <th class="text-left">Email Address</th>
+                                <th class="text-center">No. of Linked Clients</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% contacts.forEach(contact => { %>
+                                <tr>
+                                    <td><%= contact.name %></td>
+                                    <td><%= contact.surname %></td>
+                                    <td><%= contact.email %></td>
+                                    <td class="text-center"><%= contact.LinkedClients || 0 %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+            <a href="/add-contact" class="btn btn-primary">Add New Contact</a>
+        </div>
+    </div>
+    </section>
+    
+    
+
+<%- include("partials/footer.ejs") %>

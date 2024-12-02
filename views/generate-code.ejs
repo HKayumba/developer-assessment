@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") %>
+
+<section class="home">
+    <div class="container">
+        <div class="mb-3">
+            <label for="clientName" class="form-label">Enter the Client Name</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="clientName" 
+                placeholder="Enter client name">
+        </div>
+        <!-- Button to Generate Code -->
+        <button id="generateCodeBtn" class="btn btn-primary">Generate Code</button>
+        <!-- Display the Generated Code -->
+        <div id="codeResult" class="mt-3 text-success" style="display: none;">
+            <h4>Generated Client Code: <span id="generatedCode"></span></h4>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("generateCodeBtn").addEventListener("click", async () => {
+            const clientName = document.getElementById("clientName").value.trim();
+            if (!clientName) {
+                alert("Please enter a client name!");
+                return;
+            }
+    
+            try {
+                const response = await fetch("/generate-code", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ clientName })
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById("generatedCode").textContent = data.clientCode;
+                    document.getElementById("codeResult").style.display = "block";
+                } else {
+                    alert(data.error || "Failed to generate client code");
+                }
+            } catch (err) {
+                console.error("Error:", err);
+                alert("An unexpected error occurred.");
+            }
+        });
+    </script>
+</section>
+
+<%- include("partials/footer.ejs") %>

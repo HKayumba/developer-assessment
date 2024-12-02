@@ -1,0 +1,43 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="home">
+        <h1>Welcome, Contact form</h1>
+    <div>
+        <form id="addContactForm" method="POST" action="/add-contact">
+            <!-- Name Field -->
+            <div class="mb-3">
+                <label for="contactName" class="form-label">Name</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="contactName" 
+                    name="name" 
+                    required>
+            </div>
+            <!-- Surname Field -->
+            <div class="mb-3">
+                <label for="contactSurname" class="form-label">Surname</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="contactSurname" 
+                    name="surname" 
+                    required>
+            </div>
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="contactEmail" class="form-label">Email Address</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="contactEmail" 
+                    name="email" 
+                    required>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Save Contact</button>
+        </form>
+    </div>
+    </section>
+
+<%- include("partials/footer.ejs") %>"

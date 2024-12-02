@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="home">
+        <h1 class="h1-client">Client List</h1>
+    <div class="view">
+        <div class="container text-center"> 
+            
+            <% if (clients.length === 0) { %>
+                <p class="text-center text-muted">No client(s) found.</p>
+            <% } else { %>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Name</th>
+                                <th class="text-left">Client Code</th>
+                                <th class="text-center">No. of Linked Contacts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% clients.forEach(client => { %>
+                                <tr>
+                                    <td><%= client.name %></td>
+                                    <td><%= client.client_code %></td>
+                                    <td class="text-center"><%= client.LinkedContacts || 0 %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+            <a href="/add-client" class="btn btn-primary">Add New Client</a>
+        </div>
+    </div>
+    </section>
+    
+    
+
+<%- include("partials/footer.ejs") %>
